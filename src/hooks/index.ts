@@ -6,3 +6,10 @@ export function useGoTo() {
     router.push(route);
   };
 }
+
+export function useSearch() {
+  const searchItem = (item: string) => {
+    alert("estamos buscando " + item);
+  };
+  return searchItem;
+}
