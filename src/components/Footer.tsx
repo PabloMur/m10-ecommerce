@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <footer>Soy el footer</footer>;
+  return <footer className="bg-blue-400 h-80">Soy el footer</footer>;
 }

@@ -6,8 +6,10 @@ import Navbar from "./Navbar";
 export default function CustomLayout({ children }: any) {
   return (
     <RecoilRoot>
-      <Navbar />
-      {children}
+      <div className="min-h-screen">
+        <Navbar />
+        {children}
+      </div>
       <Footer />
     </RecoilRoot>
   );
