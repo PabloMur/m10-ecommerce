@@ -6,7 +6,7 @@ import { getTokenAtom } from "@/atoms";
 import { useGetToken } from "@/hooks";
 import Loader from "../ui/Loader";
 
-export default function getTokenForm() {
+export default function GetTokenForm() {
   const active = useRecoilValue(getTokenAtom);
   const getToken = useGetToken();
   const handleSubmit = (e: any) => {
@@ -17,7 +17,7 @@ export default function getTokenForm() {
   };
   return (
     active && (
-      <div className="bg-white w-2/3 h-full flex justify-center items-center relative">
+      <div className="bg-white w-2/3 h-full flex justify-center items-center relatives">
         <Loader />
         <form onSubmit={handleSubmit}>
           <label htmlFor="">
