@@ -28,7 +28,7 @@ export default function SearchComp() {
         type="text"
         placeholder="Que estas buscando?"
         name="item"
-        className="w-full h-full flex justify-center items-center text-center text-black"
+        className="w-full h-full flex justify-center items-center text-center text-black focus:outline-none focus: bg-none"
       />
       <SeachBtn></SeachBtn>
     </form>

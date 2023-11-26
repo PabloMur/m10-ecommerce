@@ -1,3 +1,4 @@
+import Menu from "./Menu";
 import Logo from "./ui/Logo";
 import LoginBtn from "./ui/buttons/LoginBtn";
 export default function Navbar() {
@@ -8,3 +9,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+//<Menu></Menu>

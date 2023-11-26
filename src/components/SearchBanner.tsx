@@ -5,7 +5,10 @@ export default function SearchBanner() {
     <div
       className={`${css.banner} w-full bg-yellow-50 flex flex-col justify-center items-center`}
     >
-      <h1 className="font-bold text-3xl my-2">El mejor E-Commerce</h1>
+      <h1 className="font-bold text-2xl my-5 w-1/2 text-center">
+        Tu tienda para encontrar relojes elegantes.
+        <br /> Descubre y elige tu pieza perfecta hoy.
+      </h1>
       <SearchComp></SearchComp>
     </div>
   );
