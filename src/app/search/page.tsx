@@ -1,3 +1,3 @@
 export default function SearchPage() {
-  return <div>Pagina de busquedas</div>;
+  return <div className="h-[90vh] bg-white">Search page</div>;
 }

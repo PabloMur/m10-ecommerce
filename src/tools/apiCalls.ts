@@ -20,7 +20,7 @@ export async function APIgetToken(email: string, code: number) {
     return error;
   }
 }
-export async function APIgetTopProducts(email: string) {
+export async function APIgetTopProducts() {
   try {
     const response = await axios.get(`${url}topProducts`);
     return response.data;
