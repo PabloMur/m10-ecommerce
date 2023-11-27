@@ -7,7 +7,7 @@ import {
   generateExpirationDate,
 } from "@/tools/emailSender";
 import { NextRequest } from "next/server";
-import yup from "yup";
+import * as yup from "yup";
 
 export class AuthController {
   static async sendCode(request: NextRequest) {

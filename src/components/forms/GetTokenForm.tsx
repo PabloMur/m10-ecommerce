@@ -13,7 +13,7 @@ export default function GetTokenForm() {
     e.preventDefault();
     const target = e.target;
     const code = target.code.value;
-    getToken(code);
+    getToken(Number(code));
   };
   return (
     active && (

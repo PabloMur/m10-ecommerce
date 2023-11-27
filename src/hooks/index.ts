@@ -3,9 +3,12 @@ import {
   loaderAtom,
   loginFormAtom,
   userEmailAtom,
+  userLoggedAtom,
+  userTokenAtom,
 } from "@/atoms";
+import { APIgetToken, APIsendCode } from "@/tools/apiCalls";
 import { useRouter } from "next/navigation";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export function useGoTo() {
   const router = useRouter();
@@ -26,25 +29,35 @@ export function useLogUser() {
   const loaderSetter = useSetRecoilState(loaderAtom);
   const getTokenSetter = useSetRecoilState(getTokenAtom);
   const loginFormSetter = useSetRecoilState(loginFormAtom);
-  return (email: string) => {
+  return async (email: string) => {
     emailSetter(email);
     loaderSetter(true);
-    setTimeout(() => {
-      loginFormSetter(false);
-      getTokenSetter(true);
-      loaderSetter(false);
-    }, 2000);
+    await APIsendCode(email);
+    loginFormSetter(false);
+    getTokenSetter(true);
+    loaderSetter(false);
   };
 }
 
 export function useGetToken() {
   const loaderSetter = useSetRecoilState(loaderAtom);
+  const getTokenSetter = useSetRecoilState(getTokenAtom);
+  const loginFormSetter = useSetRecoilState(loginFormAtom);
+  const userEmail = useRecoilValue(userEmailAtom);
+  const userTokenSetter = useSetRecoilState(userTokenAtom);
+  const loggedSetter = useSetRecoilState(userLoggedAtom);
+  const goto = useGoTo();
 
-  return (code: string) => {
+  return async (code: number) => {
     loaderSetter(true);
-    setTimeout(() => {
-      alert(code);
+    const res = await APIgetToken(userEmail, code);
+    loginFormSetter(true);
+    getTokenSetter(false);
+    if (res.response.token) {
       loaderSetter(false);
-    }, 2000);
+      userTokenSetter({ token: res.response.token });
+      loggedSetter(true);
+      goto("/");
+    }
   };
 }

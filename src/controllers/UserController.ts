@@ -2,7 +2,7 @@
 import { User } from "@/models/UserModel";
 import { NextRequest } from "next/server";
 import { OrderController } from "./OrderController";
-import yup from "yup";
+import * as yup from "yup";
 
 export class UserController {
   static async getUser(email: string) {

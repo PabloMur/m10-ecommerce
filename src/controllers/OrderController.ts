@@ -3,7 +3,7 @@ import { notificationsSender } from "@/tools/emailSender";
 import { Order } from "@/models/OrderModel";
 import { User } from "@/models/UserModel";
 import { NextRequest, NextResponse } from "next/server";
-import yup from "yup";
+import * as yup from "yup";
 
 export class OrderController {
   static async getUserOrders(userId: string) {

@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const products = await airtableBase.table("productos-m9").select().all();
 
     // Procesar y guardar en Algolia
-    const productsToSave = products.map((record) => ({
+    const productsToSave = products.map((record: any) => ({
       objectID: record.id,
       record,
     }));

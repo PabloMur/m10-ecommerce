@@ -24,3 +24,13 @@ export const userEmailAtom = atom({
   key: "userEmailAtom",
   default: "example@email.com",
 });
+
+export const userTokenAtom = atom({
+  key: "userTokenAtom",
+  default: { token: "" },
+});
+
+export const userLoggedAtom = atom({
+  key: "userLogged",
+  default: false,
+});
