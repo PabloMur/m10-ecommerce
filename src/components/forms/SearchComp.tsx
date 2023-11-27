@@ -3,13 +3,17 @@ import SeachBtn from "../ui/buttons/SearchBtn";
 import Image from "next/image";
 import lupa from "../../../public/lupa.svg";
 import { useSearch } from "@/hooks";
+import { useSearchProduct } from "@/hooks";
 export default function SearchComp() {
+  //hacer el hook para la busqueda y manejar todos los eventos que corresponden
   const searcher = useSearch();
+  const search = useSearchProduct();
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const target = e.target;
     const item = target.item.value;
     searcher(item); // Wrap item in parentheses to pass as an argument
+    search(item);
   };
   return (
     <form

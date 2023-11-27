@@ -29,3 +29,20 @@ export async function APIgetTopProducts() {
     return error;
   }
 }
+
+export async function APISearch({ limit, offset, q }: any) {
+  try {
+    const response = await axios.get(url + "search", {
+      params: {
+        limit,
+        offset,
+        q,
+      },
+    });
+
+    return response.data.response;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error en la búsqueda API");
+  }
+}

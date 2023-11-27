@@ -6,7 +6,7 @@ import {
   userLoggedAtom,
   userTokenAtom,
 } from "@/atoms";
-import { APIgetToken, APIsendCode } from "@/tools/apiCalls";
+import { APIgetToken, APIsendCode, APISearch } from "@/tools/apiCalls";
 import { useRouter } from "next/navigation";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
@@ -39,6 +39,21 @@ export function useLogUser() {
   };
 }
 
+export function useLogoutUser() {
+  const userTokenSetter = useSetRecoilState(userTokenAtom);
+  const emailSetter = useSetRecoilState(userEmailAtom);
+  const loginFormSetter = useSetRecoilState(loginFormAtom);
+  const userLoggedSetter = useSetRecoilState(userLoggedAtom);
+  const goto = useGoTo();
+  return async () => {
+    emailSetter("");
+    loginFormSetter(true);
+    userTokenSetter({ token: "" });
+    userLoggedSetter(false);
+    goto("/");
+  };
+}
+
 export function useGetToken() {
   const loaderSetter = useSetRecoilState(loaderAtom);
   const getTokenSetter = useSetRecoilState(getTokenAtom);
@@ -59,5 +74,14 @@ export function useGetToken() {
       loggedSetter(true);
       goto("/");
     }
+  };
+}
+
+export function useSearchProduct() {
+  const goto = useGoTo();
+  return async (item: string) => {
+    const res = await APISearch({ limit: 10, offset: 0, q: item });
+    console.log(res);
+    goto("/search");
   };
 }

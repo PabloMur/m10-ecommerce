@@ -1,9 +1,8 @@
-import { useGoTo } from "@/hooks";
+import { useLogoutUser } from "@/hooks";
 export default function LogoutBtn() {
-  const goto = useGoTo();
-  const route = "/";
+  const logout = useLogoutUser();
   const handleClick = () => {
-    goto(route);
+    logout();
   };
   return (
     <button

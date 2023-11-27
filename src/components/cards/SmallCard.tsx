@@ -10,7 +10,7 @@ export default function SmallCard({ title, price, id, image, alt }: any) {
   };
   return (
     <div
-      className="bg-green-100 w-56 h-64 flex flex-col items-center justify-between m-3 rounded-3xl overflow-hidden"
+      className="bg-green-100 w-56 h-64 flex flex-col items-center justify-between m-3 rounded-3xl overflow-hidden cursor-pointer"
       onClick={handleClick}
     >
       <div className="bg-red-300 overflow-hidden w-full h-4/5 flex items-center justify-center">
