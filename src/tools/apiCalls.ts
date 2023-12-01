@@ -20,6 +20,33 @@ export async function APIgetToken(email: string, code: number) {
     return error;
   }
 }
+
+export async function APIGetMe(token: string) {
+  try {
+    const response = await axios.get(`${url}me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
+export async function APIUpdatetMe(token: string) {
+  try {
+    const response = await axios.patch(`${url}me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
 export async function APIgetTopProducts() {
   try {
     const response = await axios.get(`${url}topProducts`);

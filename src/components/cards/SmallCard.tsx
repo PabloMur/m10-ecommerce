@@ -14,7 +14,7 @@ export default function SmallCard({ title, price, id, image, alt }: any) {
       onClick={handleClick}
     >
       <div className="bg-red-300 overflow-hidden w-full h-4/5 flex items-center justify-center">
-        <Image src={imageTest} alt={alt} width={250} height={100} />
+        <Image src={imageTest} alt={"test"} width={250} height={100} />
       </div>
       <div className="flex items-center justify-between w-full p-5">
         <div>

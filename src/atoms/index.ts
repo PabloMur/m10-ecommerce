@@ -40,3 +40,16 @@ export const userLoggedAtom = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const searchedItemAtom = atom({
+  key: "searchedItemAtom",
+  default: "palangana",
+  effects_UNSTABLE: [persistAtom],
+});
+
+//atomo para guardar los resultados de la ultima busqueda, no se si sirve o no
+export const searchResultsAtom = atom({
+  key: "searchResultsAtom",
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});

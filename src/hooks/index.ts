@@ -2,13 +2,20 @@ import {
   getTokenAtom,
   loaderAtom,
   loginFormAtom,
+  searchResultsAtom,
+  searchedItemAtom,
   userEmailAtom,
   userLoggedAtom,
   userTokenAtom,
 } from "@/atoms";
-import { APIgetToken, APIsendCode, APISearch } from "@/tools/apiCalls";
-import { useRouter } from "next/navigation";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  APIgetToken,
+  APIsendCode,
+  APISearch,
+  APIGetMe,
+} from "@/tools/apiCalls";
+import { usePathname, useRouter } from "next/navigation";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 
 export function useGoTo() {
   const router = useRouter();
@@ -18,10 +25,31 @@ export function useGoTo() {
 }
 
 export function useSearch() {
-  const searchItem = (item: string) => {
-    alert("estamos buscando " + item);
+  const itemSetter = useSetRecoilState(searchedItemAtom);
+  const loaderSetter = useSetRecoilState(loaderAtom);
+  const resultsSetter = useSetRecoilState(searchResultsAtom);
+  const item = useRecoilValue(searchedItemAtom);
+  const goto = useGoTo();
+  const path = usePathname();
+
+  const searcher = async (item: string) => {
+    itemSetter(item);
+    console.log(item);
+    loaderSetter(true);
+    const res = await APISearch({ limit: 10, offset: 0, q: item });
+    loaderSetter(false);
+    console.log(res);
+    console.log(res.results + "somos los resultados");
+    resultsSetter(res.results);
+
+    if (path !== "/search") goto("/search");
+    return res;
   };
-  return searchItem;
+  return { searcher, item };
+}
+
+export function useRenderProductsResutls() {
+  return "hola";
 }
 
 export function useLogUser() {
@@ -77,11 +105,14 @@ export function useGetToken() {
   };
 }
 
-export function useSearchProduct() {
-  const goto = useGoTo();
-  return async (item: string) => {
-    const res = await APISearch({ limit: 10, offset: 0, q: item });
-    console.log(res);
-    goto("/search");
+export function useGetUserData() {
+  const userToken = useRecoilValue(userTokenAtom);
+  const loaderSetter = useSetRecoilState(loaderAtom);
+
+  return async () => {
+    loaderSetter(true);
+    const res = await APIGetMe(userToken.token);
+    loaderSetter(false);
+    return res;
   };
 }
