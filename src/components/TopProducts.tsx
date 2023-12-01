@@ -1,4 +1,6 @@
 import SmallCard from "./cards/SmallCard";
+import imageTest from "../../public/banner.jpg";
+import otraImage from "../../public/bannerDos.jpg";
 export default function TopProducts() {
   return (
     <div className="min-h-96 bg-white text-black flex flex-col items-center justify-center py-10">
@@ -6,10 +8,30 @@ export default function TopProducts() {
         Productos destacados
       </h2>
       <div className="flex">
-        <SmallCard title="Reloj Uno" id="1" price="350"></SmallCard>
-        <SmallCard title="Reloj Dos" id="2" price="350"></SmallCard>
-        <SmallCard title="Reloj Tres" id="3" price="350"></SmallCard>
-        <SmallCard title="Reloj Cuatro" id="4" price="350"></SmallCard>
+        <SmallCard
+          title="Reloj Uno"
+          id="1"
+          price="350"
+          image={imageTest}
+        ></SmallCard>
+        <SmallCard
+          title="Reloj Dos"
+          id="2"
+          price="350"
+          image={otraImage}
+        ></SmallCard>
+        <SmallCard
+          title="Reloj Tres"
+          id="3"
+          price="350"
+          image={imageTest}
+        ></SmallCard>
+        <SmallCard
+          title="Reloj Cuatro"
+          id="4"
+          price="350"
+          image={otraImage}
+        ></SmallCard>
       </div>
     </div>
   );

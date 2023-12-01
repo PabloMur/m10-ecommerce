@@ -1,8 +1,22 @@
 "use client";
 import Image from "next/image";
-import imageTest from "../../../public/banner.jpg";
+
 import { useGoTo } from "@/hooks";
-export default function SmallCard({ title, price, id, image, alt }: any) {
+
+type SmallCardType = {
+  title?: string;
+  price?: string;
+  id?: string;
+  image?: any;
+  alt?: string;
+};
+export default function SmallCard({
+  title,
+  price,
+  id,
+  image,
+  alt,
+}: SmallCardType) {
   const goto = useGoTo();
   const handleClick = () => {
     const route = `/product/${id}`;
@@ -10,18 +24,18 @@ export default function SmallCard({ title, price, id, image, alt }: any) {
   };
   return (
     <div
-      className="bg-green-100 w-56 h-64 flex flex-col items-center justify-between m-3 rounded-3xl overflow-hidden cursor-pointer"
+      className=" w-64 h-64 flex flex-col items-center justify-between m-3 rounded-xl overflow-hidden cursor-pointer border-2 shadow-sm"
       onClick={handleClick}
     >
-      <div className="bg-red-300 overflow-hidden w-full h-4/5 flex items-center justify-center">
-        <Image src={imageTest} alt={"test"} width={250} height={100} />
+      <div className="overflow-hidden w-fulln h-full flex items-center justify-center ">
+        <Image src={image} alt={"test"} width={130} height={100} />
       </div>
-      <div className="flex items-center justify-between w-full p-5">
+      <div className="flex items-center justify-between w-full p-5 bg-white">
         <div>
-          <p>{title}</p>
+          <h4 className="font-bold">{title}</h4>
         </div>
         <div>
-          <p>{price}</p>
+          <p>${price}</p>
         </div>
       </div>
     </div>

@@ -5,17 +5,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    // Configuración de Airtable
-    const products = await airtableBase.table("productos-m9").select().all();
+    // Paso 1: Eliminar todos los objetos existentes en Algolia
+    await algoliaDB.clearObjects();
 
-    // Procesar y guardar en Algolia
+    // Paso 2: Guardar objetos de Airtable en Algolia
+    const products = await airtableBase.table("relojes").select().all();
     const productsToSave = products.map((record) => ({
       ...record.fields,
       objectID: record.id,
     }));
 
     const algoliaResponse = await algoliaDB.saveObjects(productsToSave);
-    return NextResponse.json({ message: "Sync successful", algoliaResponse });
+
+    return NextResponse.json({
+      message: "Sync successful",
+      algoliaResponse,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Internal server error" });
