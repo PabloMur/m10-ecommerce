@@ -57,6 +57,39 @@ export async function APIgetTopProducts() {
   }
 }
 
+export async function APIGetProductData(id: any) {
+  try {
+    const response = await axios.get(`${url}products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
+
+export async function APICreateOrder(
+  token: string,
+  userId: string,
+  productId: any,
+  orderData: any // Aquí se pasa el cuerpo de la orden
+) {
+  try {
+    const response = await axios.post(
+      `${url}order?productId=${productId}`,
+      orderData, // Usa el cuerpo proporcionado
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
+
 export async function APISearch({ limit, offset, q }: any) {
   try {
     const response = await axios.get(url + "search", {

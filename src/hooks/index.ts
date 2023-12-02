@@ -2,6 +2,7 @@ import {
   getTokenAtom,
   loaderAtom,
   loginFormAtom,
+  productDataAtom,
   searchResultsAtom,
   searchedItemAtom,
   userEmailAtom,
@@ -13,8 +14,11 @@ import {
   APIsendCode,
   APISearch,
   APIGetMe,
+  APIGetProductData,
+  APICreateOrder,
 } from "@/tools/apiCalls";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 
 export function useGoTo() {
@@ -114,5 +118,55 @@ export function useGetUserData() {
     const res = await APIGetMe(userToken.token);
     loaderSetter(false);
     return res;
+  };
+}
+
+export function useGetProductData() {
+  const { id } = useParams();
+  const loaderSetter = useSetRecoilState(loaderAtom);
+  const prodDataSetter = useSetRecoilState(productDataAtom);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      loaderSetter(true);
+      const res = await APIGetProductData(id);
+      prodDataSetter(res.response);
+      console.log("se encontro algo");
+      loaderSetter(false);
+    };
+
+    fetchData(); // Execute the async function immediately
+
+    // Return an empty function to prevent the useEffect hook from re-executing
+    return () => {};
+  }, []);
+}
+
+export function useCreateOrder() {
+  const { id } = useParams();
+  const currentProductData = useRecoilValue(productDataAtom);
+  const userToken = useRecoilValue(userTokenAtom);
+  const userID = "asd";
+  const loaderSetter = useSetRecoilState(loaderAtom);
+  //obtener el userid -> no se como
+
+  const orderData = {
+    orderData: {
+      userID,
+      Items: [
+        {
+          id,
+          title: "Traverse coffee table",
+          quantity: 1,
+          unit_price: 100,
+        },
+      ],
+    },
+  };
+  return async () => {
+    loaderSetter(true);
+    const order = await APICreateOrder(userToken.token, userID, id, orderData);
+    loaderSetter(false);
+    return order.data;
   };
 }

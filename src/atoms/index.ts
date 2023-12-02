@@ -53,3 +53,15 @@ export const searchResultsAtom = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const productDataAtom = atom({
+  key: "productData",
+  default: {
+    Name: "",
+    Images: "",
+    Price: 0,
+    Brand: "",
+    Category: "",
+    Description: "",
+  },
+});

@@ -5,10 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    // Paso 1: Eliminar todos los objetos existentes en Algolia
-    await algoliaDB.clearObjects();
-
-    // Paso 2: Guardar objetos de Airtable en Algolia
     const products = await airtableBase.table("relojes").select().all();
     const productsToSave = products.map((record) => ({
       ...record.fields,
