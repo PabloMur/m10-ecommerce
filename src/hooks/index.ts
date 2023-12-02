@@ -145,28 +145,38 @@ export function useGetProductData() {
 export function useCreateOrder() {
   const { id } = useParams();
   const currentProductData = useRecoilValue(productDataAtom);
-  const userToken = useRecoilValue(userTokenAtom);
-  const userID = "asd";
   const loaderSetter = useSetRecoilState(loaderAtom);
-  //obtener el userid -> no se como
+  const userDataGetter = useGetUserData();
+  const userToken = useRecoilValue(userTokenAtom);
 
-  const orderData = {
-    orderData: {
-      userID,
-      Items: [
-        {
-          id,
-          title: "Traverse coffee table",
-          quantity: 1,
-          unit_price: 100,
-        },
-      ],
-    },
-  };
   return async () => {
     loaderSetter(true);
+    const userID = await userDataGetter();
+
+    const orderData = {
+      orderData: {
+        userID: userID.userData.user.id,
+        Items: [
+          {
+            id,
+            title: currentProductData.Name,
+            quantity: 1,
+            unit_price: currentProductData.Price,
+          },
+        ],
+      },
+    };
+    console.log(orderData);
+
     const order = await APICreateOrder(userToken.token, userID, id, orderData);
-    loaderSetter(false);
-    return order.data;
+    //la siguiente url es la que nos lleva a mercadopago para poder empezar con el proceso de pago
+    const redirectURL = order.response.preferenceResponse.init_point;
+    console.log(order);
+    if (redirectURL) {
+      window.open(order.response.preferenceResponse.init_point, "_blank");
+      loaderSetter(false);
+    }
+
+    return;
   };
 }

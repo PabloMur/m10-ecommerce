@@ -10,7 +10,7 @@ export class UserController {
       const user = await User.findByUserEmail(email);
 
       if (user) {
-        return { user: user.data };
+        return { user: { ...user.data, id: user.id } };
       } else {
         return { message: "User not found" };
       }
