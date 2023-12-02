@@ -7,7 +7,7 @@ export default function TopProducts() {
       <h2 className="font-bold text-4xl mb-4 border-b-2 border-teal-800">
         Productos destacados
       </h2>
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         <SmallCard
           title="Reloj Uno"
           id="1"
@@ -17,18 +17,6 @@ export default function TopProducts() {
         <SmallCard
           title="Reloj Dos"
           id="2"
-          price="350"
-          image={otraImage}
-        ></SmallCard>
-        <SmallCard
-          title="Reloj Tres"
-          id="3"
-          price="350"
-          image={imageTest}
-        ></SmallCard>
-        <SmallCard
-          title="Reloj Cuatro"
-          id="4"
           price="350"
           image={otraImage}
         ></SmallCard>
