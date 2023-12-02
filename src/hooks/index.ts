@@ -166,17 +166,18 @@ export function useCreateOrder() {
         ],
       },
     };
-    console.log(orderData);
-
     const order = await APICreateOrder(userToken.token, userID, id, orderData);
     //la siguiente url es la que nos lleva a mercadopago para poder empezar con el proceso de pago
     const redirectURL = order.response.preferenceResponse.init_point;
-    console.log(order);
+    // if (redirectURL) {
+    //   window.open(order.response.preferenceResponse.init_point);
+    //   loaderSetter(false);
+    // }
     if (redirectURL) {
-      window.open(order.response.preferenceResponse.init_point, "_blank");
+      //Reescribe la URL en la misma pestaña
+      window.location.href = redirectURL;
       loaderSetter(false);
     }
-
     return;
   };
 }

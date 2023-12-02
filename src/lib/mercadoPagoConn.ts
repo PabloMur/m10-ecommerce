@@ -22,8 +22,11 @@ export async function CreatePreference(
     body: {
       items,
       external_reference,
+      back_urls: {
+        success: "https://m10-ecommerce.vercel.app/thanks",
+      },
       notification_url:
-        "https://webhook.site/7fb7cbc0-294a-4779-b079-ad808e360e32",
+        "https://m9-entregable.vercel.app/api/ipn/mercadopago?id=13533682457&topic=merchant_order",
     },
   });
   return createdPreference;
