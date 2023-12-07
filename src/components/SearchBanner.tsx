@@ -4,14 +4,16 @@ import Loader from "./ui/Loader";
 export default function SearchBanner() {
   return (
     <div
-      className={`${css.banner} w-full bg-yellow-50 flex flex-col justify-center items-center`}
+      className={`${css.banner} w-full bg-yellow-50 flex flex-col justify-center items-center relative`}
     >
       <Loader></Loader>
-      <h1 className="font-bold text-2xl my-5 w-1/2 text-center">
+      <h1 className="font-bold text-2xl my-5 text-center w-full sm:w-1/2 p-3 h-1/3">
         Tu tienda para encontrar relojes elegantes.
         <br /> Descubre y elige tu pieza perfecta hoy.
       </h1>
-      <SearchComp></SearchComp>
+      <div className=" h-2/3 w-full p-3 pt-6">
+        <SearchComp></SearchComp>
+      </div>
     </div>
   );
 }

@@ -65,3 +65,8 @@ export const productDataAtom = atom({
     Description: "",
   },
 });
+
+export const menuActiveAtom = atom({
+  key: "menuactiveAtom",
+  default: false,
+});

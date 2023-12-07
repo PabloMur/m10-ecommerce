@@ -2,21 +2,22 @@
 import LogoutBtn from "./ui/buttons/Logout";
 import MenuLi from "./ui/buttons/MenuLi";
 import { useRecoilValue } from "recoil";
-import { userLoggedAtom } from "@/atoms";
+import { menuActiveAtom, userLoggedAtom } from "@/atoms";
+import LoginBtn from "./ui/buttons/LoginBtn";
 
 export default function Menu() {
   const activeFromAtom = useRecoilValue(userLoggedAtom);
+  const menuActive = useRecoilValue(menuActiveAtom);
   return (
-    <div>
-      {activeFromAtom && (
-        <div>
-          <ul className="flex sm:gap-2 items-center justify-center my-4 sm:my-0">
-            <MenuLi route={"/profile"}>Mi Perfil</MenuLi>
-            <MenuLi route={"/search"}>Buscar</MenuLi>
-            <LogoutBtn></LogoutBtn>
-          </ul>
-        </div>
-      )}
-    </div>
+    menuActive && (
+      <div className="bg-black absolute top-[12vh] right-0 z-10 w-full p-5 h-[80vh] sm:h-[90vh] sm:w-1/4">
+        <ul className="flex flex-col gap-10 items-center justify-center h-[100%]">
+          <MenuLi route={"/profile"}>Mi Perfil</MenuLi>
+          <MenuLi route={"/search"}>Buscar</MenuLi>
+          <LogoutBtn></LogoutBtn>
+          <LoginBtn></LoginBtn>
+        </ul>
+      </div>
+    )
   );
 }

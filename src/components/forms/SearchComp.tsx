@@ -1,8 +1,6 @@
 "use client";
 import SeachBtn from "../ui/buttons/SearchBtn";
 import { useSearch } from "@/hooks";
-import { useRecoilValue } from "recoil";
-import { searchedItemAtom } from "@/atoms";
 import { SearchCompInput } from "../ui/inputs/SearchCompImput";
 import { Lupa } from "@/components/ui/icons/Lupa";
 
@@ -16,7 +14,7 @@ export default function SearchComp() {
   };
   return (
     <form
-      className="bg-white  my-4 sm:my-0 sm:w-1/2 h-10 rounded-full border border-gray shadow-2xl flex justify-between items-center w-[90%]"
+      className="bg-white my-4 sm:my-0 sm:w-1/2 h-10 rounded-full border border-gray shadow-2xl flex justify-between items-center w-full"
       onSubmit={handleSubmit}
     >
       <Lupa></Lupa>

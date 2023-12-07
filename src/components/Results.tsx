@@ -1,6 +1,5 @@
 "use client";
 import { searchResultsAtom } from "@/atoms";
-import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import SmallCard from "./cards/SmallCard";
 
@@ -9,7 +8,7 @@ const Results = () => {
 
   return (
     <section className="flex flex-col justify-center items-center">
-      <div className="flex flex-wrap sm:flex-row justify-center items-center  sm:w-2/3">
+      <div className="flex flex-wrap justify-center items-center">
         {searchResults.map((r: any) => {
           return (
             <SmallCard
