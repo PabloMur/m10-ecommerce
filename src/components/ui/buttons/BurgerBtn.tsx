@@ -7,7 +7,7 @@ import lines from "../../../../public/linesMenu.svg";
 
 const Rows = ({ onClick }: any) => {
   return (
-    <div onClick={onClick} className="h-10 w-10">
+    <div onClick={onClick} className="h-10 w-10 cursor-pointer">
       <Image src={lines} alt="menu icon"></Image>
     </div>
   );
@@ -15,7 +15,7 @@ const Rows = ({ onClick }: any) => {
 
 const Cross = ({ onClick }: any) => {
   return (
-    <div onClick={onClick} className="h-10 w-10">
+    <div onClick={onClick} className="h-10 w-10 cursor-pointer">
       <Image src={crossMenu} alt="menu icon"></Image>
     </div>
   );

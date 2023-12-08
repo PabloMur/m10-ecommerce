@@ -13,13 +13,15 @@ export default function SearchComp() {
     searcher(itemForm);
   };
   return (
-    <form
-      className="bg-white my-4 sm:my-0 sm:w-1/2 h-10 rounded-full border border-gray shadow-2xl flex justify-between items-center w-full"
-      onSubmit={handleSubmit}
-    >
-      <Lupa></Lupa>
-      <SearchCompInput item={item}></SearchCompInput>
-      <SeachBtn></SeachBtn>
-    </form>
+    <div className="bg-black p-4 w-full flex justify-center items-center absolute sm:relative top-[10vh] z-10 sm:top-0 left-0">
+      <form
+        className="bg-white my-4 sm:my-0 sm:w-1/2 h-10 rounded-full border border-gray shadow-2xl flex justify-between items-center w-full "
+        onSubmit={handleSubmit}
+      >
+        <Lupa></Lupa>
+        <SearchCompInput item={item}></SearchCompInput>
+        <SeachBtn></SeachBtn>
+      </form>
+    </div>
   );
 }

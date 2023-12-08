@@ -112,8 +112,10 @@ export function useGetToken() {
 export function useGetUserData() {
   const userToken = useRecoilValue(userTokenAtom);
   const loaderSetter = useSetRecoilState(loaderAtom);
+  const protection = useProtectedPage();
 
   return async () => {
+    protection();
     loaderSetter(true);
     const res = await APIGetMe(userToken.token);
     loaderSetter(false);
@@ -177,6 +179,17 @@ export function useCreateOrder() {
       //Reescribe la URL en la misma pestaña
       window.location.href = redirectURL;
       loaderSetter(false);
+    }
+    return;
+  };
+}
+
+export function useProtectedPage() {
+  const userLogged = useRecoilValue(userLoggedAtom);
+  const goto = useGoTo();
+  return () => {
+    if (!userLogged) {
+      goto("/");
     }
     return;
   };
