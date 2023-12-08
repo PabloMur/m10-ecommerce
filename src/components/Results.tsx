@@ -12,6 +12,7 @@ const Results = () => {
         {searchResults.map((r: any) => {
           return (
             <SmallCard
+              alt="imagen de producto del ecommerce"
               key={r.objectID}
               title={r.Name}
               id={r.objectID}
