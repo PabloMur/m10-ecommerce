@@ -14,7 +14,7 @@ export default function SearchComp() {
   };
   return (
     <form
-      className="bg-white my-4 sm:my-0 sm:w-1/2 h-10 rounded-full border border-gray shadow-2xl flex justify-between items-center w-full "
+      className="bg-white my-4 sm:my-0 h-10 rounded-full border border-gray shadow-2xl flex justify-between items-center w-full "
       onSubmit={handleSubmit}
     >
       <Lupa></Lupa>
