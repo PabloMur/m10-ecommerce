@@ -2,6 +2,7 @@ import {
   getTokenAtom,
   loaderAtom,
   loginFormAtom,
+  menuActiveAtom,
   productDataAtom,
   searchResultsAtom,
   searchedItemAtom,
@@ -76,12 +77,14 @@ export function useLogoutUser() {
   const emailSetter = useSetRecoilState(userEmailAtom);
   const loginFormSetter = useSetRecoilState(loginFormAtom);
   const userLoggedSetter = useSetRecoilState(userLoggedAtom);
+  const menuSetter = useSetRecoilState(menuActiveAtom);
   const goto = useGoTo();
   return async () => {
     emailSetter("");
     loginFormSetter(true);
     userTokenSetter({ token: "" });
     userLoggedSetter(false);
+    menuSetter(false);
     goto("/");
   };
 }
@@ -150,6 +153,7 @@ export function useCreateOrder() {
   const loaderSetter = useSetRecoilState(loaderAtom);
   const userDataGetter = useGetUserData();
   const userToken = useRecoilValue(userTokenAtom);
+  const userLogged = useRecoilValue(userLoggedAtom);
 
   return async () => {
     loaderSetter(true);

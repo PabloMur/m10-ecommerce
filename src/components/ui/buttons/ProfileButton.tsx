@@ -1,12 +1,16 @@
 "use client";
-import { userLoggedAtom } from "@/atoms";
+import { menuActiveAtom, userLoggedAtom } from "@/atoms";
 import MenuLi from "./MenuLi";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 export function ProfileBtn() {
   const userLogged = useRecoilValue(userLoggedAtom);
+  const menuSetter = useSetRecoilState(menuActiveAtom);
+  const handleClick = () => {
+    menuSetter(false);
+  };
   return (
     userLogged && (
-      <div>
+      <div onClick={handleClick}>
         <MenuLi route={"/profile"}>Mi Perfil</MenuLi>
       </div>
     )

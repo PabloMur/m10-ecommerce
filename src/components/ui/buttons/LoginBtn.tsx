@@ -1,11 +1,13 @@
 import { useGoTo } from "@/hooks";
-import { useRecoilValue } from "recoil";
-import { userLoggedAtom } from "@/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { menuActiveAtom, userLoggedAtom } from "@/atoms";
 export default function LoginBtn() {
   const goto = useGoTo();
   const active = useRecoilValue(userLoggedAtom);
+  const menuSetter = useSetRecoilState(menuActiveAtom);
   const route = "/login";
   const handleClick = () => {
+    menuSetter(false);
     goto(route);
   };
   return (
