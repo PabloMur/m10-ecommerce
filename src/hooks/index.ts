@@ -159,32 +159,41 @@ export function useCreateOrder() {
     loaderSetter(true);
     const userID = await userDataGetter();
 
-    const orderData = {
-      orderData: {
-        userID: userID.userData.user.id,
-        Items: [
-          {
-            id,
-            title: currentProductData.Name,
-            quantity: 1,
-            unit_price: currentProductData.Price,
-          },
-        ],
-      },
-    };
-    const order = await APICreateOrder(userToken.token, userID, id, orderData);
-    //la siguiente url es la que nos lleva a mercadopago para poder empezar con el proceso de pago
-    const redirectURL = order.response.preferenceResponse.init_point;
-    // if (redirectURL) {
-    //   window.open(order.response.preferenceResponse.init_point);
-    //   loaderSetter(false);
-    // }
-    if (redirectURL) {
-      //Reescribe la URL en la misma pestaña
-      window.location.href = redirectURL;
-      loaderSetter(false);
+    if (userLogged) {
+      const orderData = {
+        orderData: {
+          userID: userID.userData.user.id,
+          Items: [
+            {
+              id,
+              title: currentProductData.Name,
+              quantity: 1,
+              unit_price: currentProductData.Price,
+            },
+          ],
+        },
+      };
+      const order = await APICreateOrder(
+        userToken.token,
+        userID,
+        id,
+        orderData
+      );
+      //la siguiente url es la que nos lleva a mercadopago para poder empezar con el proceso de pago
+      const redirectURL = order.response.preferenceResponse.init_point;
+      // if (redirectURL) {
+      //   window.open(order.response.preferenceResponse.init_point);
+      //   loaderSetter(false);
+      // }
+      if (redirectURL) {
+        //Reescribe la URL en la misma pestaña
+        window.location.href = redirectURL;
+        loaderSetter(false);
+      }
+      return;
+    } else {
+      alert("Debes iniciar sesion para poder comprar");
     }
-    return;
   };
 }
 
