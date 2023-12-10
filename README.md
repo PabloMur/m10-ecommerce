@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Módulo 10 - Desarrollo Web Full Stack - APX
 
-## Getting Started
+## Front-end de Ecommerce
 
-First, run the development server:
+Este proyecto constituye un ecommerce robusto que incorpora diversas herramientas para una experiencia completa. A continuación, se presentan sus características principales:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Características Clave
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Integración de MercadoPago:** El sistema incorpora la API de MercadoPago para gestionar de manera eficiente los pagos, proporcionando una experiencia de compra segura y confiable.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Gestión de Productos con Airtable:** Utiliza Airtable como plataforma para que el administrador del sitio pueda gestionar fácilmente los productos de la tienda, asegurando una administración eficaz y actualizada del inventario.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. **Búsqueda Eficiente con Algolia:** Implementa Algolia, un servicio que permite realizar búsquedas rápidas y precisas dentro de la base de datos del ecommerce, mejorando la experiencia del usuario al encontrar rápidamente los productos deseados.
 
-## Learn More
+4. **Arquitectura Monolítica:** A diferencia del enfoque tradicional de separación entre el front-end y el back-end, este proyecto se constituye como un monolito donde ambas partes conviven de manera integrada, simplificando el desarrollo y la gestión.
 
-To learn more about Next.js, take a look at the following resources:
+### Tecnologías Utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El desarrollo se lleva a cabo utilizando las siguientes tecnologías:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Node.js | Next.js | Tailwind | Firebase | Algolia | Airtable | JWT | Date-fns | Typescript
 
-## Deploy on Vercel
+### [Link del Despliegue](https://m10-ecommerce.vercel.app/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Explore la implementación en vivo del proyecto [aquí](https://m10-ecommerce.vercel.app/), y experimente de primera mano las funcionalidades del ecommerce.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+¡Gracias por visitar nuestro ecommerce desarrollado en el Módulo 10 de Desarrollo Web Full Stack - APX!
